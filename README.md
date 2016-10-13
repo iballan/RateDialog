@@ -1,6 +1,7 @@
 RateDialog
 ==============
 
+[![](https://jitpack.io/v/iballan/RateDialog.svg)](https://jitpack.io/#iballan/RateDialog)
 
 ## RateDialog will allow you to prompt a message to users helping them to Rate you app
 
