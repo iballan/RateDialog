@@ -1,78 +1,31 @@
-TimelyView
+RateDialog
 ==============
 
 
-## Animated Time View like Timely app
+## RateDialog will allow you to prompt a message to users helping them to Rate you app
 
 Screenshots:
 --------
-
-![Screenshots/screenshot1](https://github.com/iballan/TimelyTextView/raw/master/Screenshots/TimelyTimeView_screenshot.gif)  ![Screenshots/screenshot2](https://github.com/iballan/TimelyTextView/raw/master/Screenshots/TimelyView_Screenshot.gif)
-
 
 
 Usage :
 
 XML Layout:
 ``` xml
-<com.mbh.timelyview.TimelyTimeView
-   android:id="@+id/ttv"
-   android:layout_width="wrap_content"
-   android:layout_height="60dp"
-   app:rounded_corner="true"
-   app:text_color="true"
-   app:seperatorsTextSize="50"
-   android:layout_gravity="center"/>
-	   
-	   
-<com.mbh.timelyview.TimelyShortTimeView
-	android:id="@+id/tstv_hours"
-	android:layout_width="match_parent"
-	android:layout_height="wrap_content"
-	app:rounded_corner="true"
-	app:text_color="true"
-	app:seperatorsTextSize="50"/>
+// No XML
 ```
 
 Java:
 ``` java
-    public class MainActivity extends Activity {
-			private TimelyTimeView ttv; 
-			TimelyShortTimeView tstv_hours;
-			@Override
-			protected void onCreate(Bundle savedInstanceState) {
-				super.onCreate(savedInstanceState);
-				setContentView(R.layout.activity_main);
-				// TimelyTimeView
-				ttv = (TimelyTimeView) findViewById(R.id.ttv);
-				ttv.setTextColor(Color.WHITE);
-				ttv.setSeperatorsTextSize(50);
-				
-				// Then whenever you want to set the time and animate to it
-				ttv.setTime("00:00:00"); // As formatted String 
-				// OR
-				ttv.setTime(new int[]{12:12:12});
-				// OR
-				ttv.setTime(new Date());
-				
-				// ------------------
-				// TimelyShortTimeView for (hour:min)
-				tstv_hours = (TimelyShortTimeView) findViewById(R.id.tstv_hours);
-				tstv_hours.setTextColor(Color.BLACK);
-				tstv_hours.setTimeFormat(TimelyShortTimeView.FORMAT_HOUR_MIN); // can be set as TimelyShortTimeView.FORMAT_MIN_SEC
-				tstv_hours.setSeperatorsTextSize(50);
-				
-				// Then whenever you want to set the time and animate to it
-				ttv.setTime("00:00"); // As formatted String 
-				// OR
-				ttv.setTime(new int[]{20:20});
-				// OR
-				ttv.setTime(new Date());
-				// OR
-				long timeAsMilliseconds = new Date().getTime();
-				ttv.setTime(timeAsMilliseconds);
-			}
-   }
+	RateDialog.Config config = new RateDialog.Config();
+	config.setInstallDays(2); // after installation with 7 days show it
+	config.setLaunchTimes(2); // after launch times show it
+	config.setMessage(R.string.rate_message);
+	config.setmNoThanks(R.string.rate_no_thanks);
+	config.setmOkButton(R.string.rate_ok);
+	config.setmRemindMeLater(R.string.rate_remind_me);
+	config.setTitle(R.string.rate_title);
+	return RateDialog.onStart(config, context);
 ```
 
 Install
@@ -85,7 +38,7 @@ You can install using Gradle:
 	    maven { url "https://jitpack.io" }
 	}
 	dependencies {
-	    compile 'com.github.iballan:TimelyView:1.0.0'
+	    compile 'com.github.iballan:RateDialog:0.0.1'
 	}
 ```
 
@@ -101,14 +54,13 @@ Website: [www.mbh01.com](http://mbh01.com)
 Credits:
 --------
 
-TimelyTextView : https://github.com/adnan-SM/TimelyTextView
+MaterialDialog : https://github.com/drakeet/MaterialDialog
 
-Sriram Ramani article : http://sriramramani.wordpress.com/2013/10/14/number-tweening/
 
 License
 --------
 
-    Copyright 2014 Mohamad Ballan.
+    Copyright 2016 Mohamad Ballan.
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
